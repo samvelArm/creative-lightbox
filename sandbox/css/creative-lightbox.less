@@ -1,0 +1,303 @@
+#creative-lightbox-preview {
+	font-family: lato;
+	padding: 40px;
+	h1 {
+		text-align: center;
+		font-size: 30px;
+	}
+	ul {
+		text-align: center;
+		padding-top: 20px;
+		li {
+			display: inline-block;
+			cursor: pointer;
+			img {
+				height: 150px;
+				width: auto;
+			}
+		}
+	}
+}
+
+// Transition times
+@fast-transition-time: 0.3s;
+@mid-transition-time: 0.6s;
+@slow-transition-time: 0.9s;
+
+// Colors
+@main-wrapper-color: rgba(0, 0, 0, 0.7);
+@icons-bg-color: #8E9396;
+@icons-border-color: #484C50;
+@icons-box-shadow-color: #F1F1F1;
+@lightbox-box-shadow-color: #DADA80;
+@loading-line-indicatior-color: #6972F5;
+@carousel-bg-color: #1A1B1B;
+@carousel-box-shadow-color: #A7A69A;
+@carousel-box-shadow-color-selected: #2BDC09;
+
+@carousel-map-border: white;
+
+@carousel-map-bg-color-hover: rgba(0,0,0,0.5);
+@carousel-map-bg-color: #9C9C9C;
+
+.css-transition (...) {
+	-webkit-transition: @arguments;
+	-moz-transition: @arguments;
+	-ms-transition: @arguments;
+	-o-transition: @arguments;
+	transition: @arguments;
+}
+.box-shadow (@shadow) {
+	-webkit-box-shadow: @shadow;
+	-moz-box-shadow: @shadow;
+	-ms-box-shadow: @shadow;
+	-o-box-shadow: @shadow;
+	box-shadow: @shadow;
+}
+
+.transform-rotate (@string) {
+	-webkit-transform: rotate(@string);
+	-moz-transform: rotate(@string);
+	-ms-transform: rotate(@string);
+	-o-transform: rotate(@string);
+	transform: rotate(@string);
+}
+
+
+
+.creative-lightbox {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: @main-wrapper-color;
+	.no-transition {
+		.css-transition ( 'none!important' );
+	}
+	&.hidden {
+		display: none;
+	}
+	.round-icon {
+		border-radius: 50%;
+		background-color: @icons-bg-color;
+		border: 1px solid @icons-border-color;
+		.box-shadow(0 0 3px 0 @icons-box-shadow-color);
+		cursor: pointer;
+		position: absolute;
+		opacity: 0.7;
+		.css-transition (top @fast-transition-time, left @fast-transition-time, right @fast-transition-time, bottom @fast-transition-time, opacity @fast-transition-time;);
+		&:hover {
+			opacity: 1!important;
+		}
+	}
+	.close-icon {
+		top: 10px;
+		right: 10px;
+		&.hidden {
+		 	top: -100px;
+		}
+	}
+	.expand-icon {
+		top: 10px;
+		right: 62px;
+		&.hidden {
+		 	top: -100px;
+		}
+	}
+	.play-icon {
+		top: 10px;
+		right: 114px;
+		&.hidden {
+		 	top: -100px;
+		}
+	}
+	.next-icon {
+		right: 10px;
+		&.hidden {
+		 	right: -100px;
+		}
+	}
+	.prev-icon {
+		left: 10px;
+		&.hidden {
+		 	left: -100px;
+		}
+	}
+	.main-area {
+		position: absolute;
+		overflow: hidden;
+		.css-transition (all @mid-transition-time);
+
+		.box-shadow(0 0 3px 1px @lightbox-box-shadow-color);
+		.main-loading-line-wrapper {
+			height: 2px;
+			width: 100%;
+			background-color: @lightbox-box-shadow-color;
+			.main-loading-line-indicatior{
+				width: 50%; // temprary
+				height: 2px;
+				background-color: @loading-line-indicatior-color;
+			}
+		}
+		.image-caption-area-container {
+			position: relative;
+			.css-transition (all @mid-transition-time);
+			.main-area-cover {
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-color: black;
+				opacity: 1;
+				z-index: 1000;
+				width: 100%;
+				height: 100%;
+				.css-transition (all @mid-transition-time);
+				&.hidden {
+					opacity: 0;
+					z-index: 0;
+				}
+				.main-loading {
+					position: absolute;
+				}
+			}
+			.lightbox-main-image-wrapper {
+				.css-transition (all @mid-transition-time);
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 999;
+				width: 100%;
+				.lightbox-main-image {
+					.css-transition (all @mid-transition-time);
+					max-height: 100%!important;
+					max-width: 100%!important;
+				}
+			}
+			.lightbox-main-caption-wrapper {
+				display: none;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				z-index: 999;
+				width: 100%;
+				overflow: hidden;
+				.lightbox-main-caption {
+					padding: 10px;
+				}
+			}
+		}
+		.map-tooltip {
+			position: absolute;
+			border: 1px solid @carousel-map-border;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+			&:after {
+				content: '';
+				width: 0; 
+				height: 0; 
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid @carousel-map-border;
+			}
+		}
+		.lightbox-carousel-wrapper {
+			position: relative;
+			background-color: @carousel-bg-color;
+			.lightbox-carousel {
+				position: relative;
+				li {
+					position: absolute;
+					.box-shadow(0 0 1px 1px @carousel-box-shadow-color);
+					cursor: pointer;
+					.css-transition (top @fast-transition-time, left @fast-transition-time, right @fast-transition-time, bottom @fast-transition-time, box-shadow @fast-transition-time;);
+					img {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						z-index: 100;
+					}
+					.lightbox-carousel-image-cover {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						z-index: 101;
+						background-color: black;
+						.css-transition(opacity @fast-transition-time);
+						&.hidden {
+							opacity: 0;
+						}
+						.loader {
+							position: absolute;
+						}
+					}
+					
+					&.selected {
+						.box-shadow(0 0 1px 1px @carousel-box-shadow-color-selected);
+					}
+					&:hover {
+						.box-shadow(0 0 1px 1px @carousel-box-shadow-color-selected);
+					}
+					&.map {
+						box-sizing: border-box;
+						border-radius: 50%;
+						border: 2px solid @carousel-map-border;
+						background-color: @carousel-map-bg-color;
+						.css-transition(background-color @fast-transition-time);
+						.box-shadow(none);
+						&:hover {
+							.box-shadow(none);
+							background-color: @carousel-map-bg-color-hover;
+						}
+						&.selected {
+							.box-shadow(none);
+							background-color: @carousel-map-bg-color-hover;
+						}
+					}
+				}
+			}
+			.carousel-next-icon {
+				position: absolute;
+				right: 10px;
+				opacity: 0.1;
+				z-index: 101;
+				&.rotate {
+					.transform-rotate(90deg);
+				}
+			}
+			.carousel-prev-icon {
+				position: absolute;
+				left: 10px;	
+				opacity: 0.1;
+				z-index: 101;
+				&.rotate {
+					.transform-rotate(90deg);
+				}
+			}
+			&:hover {
+				.carousel-next-icon {
+					opacity: 0.7;
+				}
+				.carousel-prev-icon {
+					opacity: 0.7;	
+				}
+			}
+			&.vertical {
+				position: absolute;
+				top: 2px;
+				right: 0;
+				overflow: hidden;
+			}
+		}
+		
+	}
+}

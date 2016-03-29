@@ -1,0 +1,101 @@
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-close_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -5px -5px;
+}
+
+.sprite-collapse_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -47px -5px;
+}
+
+.sprite-download_26 {
+    width: 26px;
+    height: 26px;
+    background-position: -89px -5px;
+}
+
+.sprite-expand_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -125px -5px;
+}
+
+.sprite-fast_forward_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -5px -47px;
+}
+
+.sprite-left_circular_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -47px -47px;
+}
+
+.sprite-left_round_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -89px -47px;
+}
+
+.sprite-link_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -5px -89px;
+}
+
+.sprite-pause_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -47px -89px;
+}
+
+.sprite-play_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -89px -89px;
+}
+
+.sprite-rewind_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -167px -5px;
+}
+
+.sprite-right_circular_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -131px -47px;
+}
+
+.sprite-right_round_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -131px -89px;
+}
+
+.sprite-search_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -5px -131px;
+}
+
+.sprite-zoom_in_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -47px -131px;
+}
+
+.sprite-zoom_out_32 {
+    width: 32px;
+    height: 32px;
+    background-position: -89px -131px;
+}
